@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const app = express();
 const PORT = process.env.PORT || 4000;
 const path = require('path');
+const productRouter = express.Router();
 
 app.use(morgan('combined'))
 app.use(express.static(path.join(__dirname,"/public")));
@@ -12,7 +13,7 @@ app.use(express.static(path.join(__dirname,"/public")));
 app.set("views","./src/views");
 app.set("view engine", "ejs")
 
-app.set("/products")
+app.use("/products", productRouter)
 
 app.get("/", (req,res) =>{
 
